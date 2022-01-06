@@ -1,0 +1,5 @@
+Auteur Erwan
+Ma terrain initial préféré:
+PORTE_AVION 1 12, H
+CROISEUR 3 4, D
+CONTRE_TORPILLEUR 4 4, B

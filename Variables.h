@@ -1,7 +1,9 @@
 #ifndef __VARIABLES_H
 #define __VARIABLES_H
 
-// Definir les valiables
+// Definir les variables
+
+#define taille 10
 
 #define RATE 0
 #define TOUCHE 1
@@ -25,5 +27,6 @@ typedef struct{
   bool est_touche; 
 }Pos;
 
+typedef int grille[taille][taille];
 
 #endif
