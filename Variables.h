@@ -7,6 +7,7 @@
 #define TOUCHE 1
 #define COULE 2
 
+
 // Longeur du bateau 
 #define PORTE_AVION 5
 #define CROISEUR 4
@@ -17,6 +18,7 @@
 // Direction du bateau
 #define VERTICAL 0
 #define HORIZONTAL 1
+
 
 typedef struct{
   int x,y; // La position
