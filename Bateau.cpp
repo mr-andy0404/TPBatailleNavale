@@ -15,3 +15,15 @@ Bateau::Bateau(string _nom, int _type, Pos _positionInit, bool direction) {
         position.push_back(newPos);
     }
 }
+
+Pos Bateau::getPos(int numero) {
+    return position[numero];
+}
+
+bool Bateau::estTouche(int x, int y, Terrain * terrain) {
+
+}
+
+bool Bateau::estCoule() {
+    return est_coule;
+}
