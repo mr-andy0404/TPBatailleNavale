@@ -10,7 +10,7 @@
 #include "Bateau.h"
 
 class Terrain {
-private:
+private: //Attributs privés
 	grille situation;
 	vector<Bateau> bateaux;
 
@@ -18,7 +18,12 @@ public:
 	Terrain();
 	Terrain(string path);
 
+	vector<Bateau> getBateaux();
+	grille getSituation();
 
+private: //Méthodes privées
+	lectureFicher(string nomFichier);
+	decouperLigne(string line);
 };
 
 #endif
