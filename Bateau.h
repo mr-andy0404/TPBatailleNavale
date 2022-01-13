@@ -21,6 +21,7 @@ public:
   Bateau(string _nom, int _type, Pos _positionInit, bool direction);
 
   Pos getPos(int numero);
+  int getType();
 
   bool estTouche(int x, int y);
   bool estCoule();

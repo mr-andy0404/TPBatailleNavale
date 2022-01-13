@@ -20,6 +20,10 @@ Pos Bateau::getPos(int numero) {
     return position[numero];
 }
 
+int Bateau::getType() {
+    return type;
+}
+
 bool Bateau::estTouche(int x, int y) {
     for(Pos i : position){
         if(i.x == x && i.y == y) {
