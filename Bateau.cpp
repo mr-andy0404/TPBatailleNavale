@@ -25,21 +25,20 @@ int Bateau::getType() {
 }
 
 bool Bateau::estTouche(int x, int y) {
+    est_coule = true;
+    bool touche = false;
     for(Pos i : position){
         if(i.x == x && i.y == y) {
             i.est_touche = true;
-            return true;
+            touche = true;
         }
-    }
-    return false;
-}
-
-bool Bateau::estCoule() {
-    est_coule = true;
-    for(Pos i : position) {
         if (!i.est_touche){
             est_coule = false;
         }
     }
+    return touche;
+}
+
+bool Bateau::estCoule() {
     return est_coule;
 }
