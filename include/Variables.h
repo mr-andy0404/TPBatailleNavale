@@ -5,10 +5,7 @@
 
 #define taille 10
 
-#define EAU 0
-#define RATE 1
-#define TOUCHE 2
-#define COULE 3
+enum class Case { MUR, EAU, RATE, TOUCHE, COULE };
 
 
 // Longeur du bateau 
