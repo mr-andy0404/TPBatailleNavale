@@ -1,17 +1,26 @@
 #include "Terrain.h"
 
 Terrain::Terrain(){
-
+    for (int i = 0; i < taille; i++) {
+        for (int j = 0; j < taille; j++) {
+            (*situation)[i][j] = EAU;
+        }
+    }
 }
 
 Terrain::Terrain(string path){
 
+    lectureFicher(path);
+    for (int i = 0; i < taille; i++) {
+        for (int j = 0; j < taille; j++) {
+            (*situation)[i][j] = EAU;
+        }
+    }
 }
 
 void Terrain::lectureFicher(string nomFichier) {
     fstream fichier, out;
     fichier.open(nomFichier, ios::in);
-    Vector3D temp3D;
     if (fichier.is_open()) {
         string line;
         while (getline(fichier, line))
@@ -20,13 +29,13 @@ void Terrain::lectureFicher(string nomFichier) {
 
             int type = 0;
             if (lineD[0] == "PORTE_AVION"){
-            	type = PORTE_AVION;
+                type = PORTE_AVION;
             } else if (lineD[0] == "CROISEUR") {
             	type = CROISEUR;
             } else if (lineD[0] == "CONTRE_TORPILLEUR") {
             	type = CONTRE_TORPILLEUR;
             } else if (lineD[0] == "SOUS_MARIN") {
-            	type = SOUS_MARIN
+                type = SOUS_MARIN;
             } else if (lineD[0] == "TORPILLEUR") {
             	type = TORPILLEUR;
             }
@@ -53,7 +62,7 @@ void Terrain::lectureFicher(string nomFichier) {
             		cout << lineD[4] << " n'a pas pu etre ajoute car il est en dehors du terrain" << endl;
             	} else {
 
-            		this->bateaux.push_back(new Bateau(lineD[4], type, posInit, direction));
+            		this->bateaux.push_back(Bateau(lineD[4], type, posInit, direction));
             	}
             }
 
@@ -85,18 +94,37 @@ vector<Bateau> Terrain::getBateaux(){
 	return this->bateaux;
 }
 
-grille Terrain::getSituation() {
-	return this->situation;
+grille* Terrain::getSituation() {
+	return situation;
 }
 
-bool recevoirTir(int x, int y) {
+bool Terrain::recevoirTir(int x, int y) {
     
     bool touche = false;
+    bool coule = false;
+
     int i = 0;
 
     while (i< this->bateaux.size() && !touche) {
-        touche = this->bateaux[i].recevoirTir(x, y);
-        i++;
+        touche = this->bateaux[i].estTouche(x, y);
+        if (!touche) {
+            i++;
+        }
+    }
+
+    coule = bateaux[i].estCoule();
+
+    if (touche && coule) {
+        for (int j = 0; j < bateaux[i].getType(); j++) {
+            Pos elementBateau = bateaux[i].getPos(j);
+            (*situation)[elementBateau.x][elementBateau.y] = COULE;
+        }
+    }
+    else if (touche && !coule) {
+        (*situation)[x][y] = TOUCHE;
+    }
+    else {
+        (*situation)[x][y] = RATE;
     }
 
     return touche;

@@ -5,9 +5,10 @@
 
 #define taille 10
 
-#define RATE 0
-#define TOUCHE 1
-#define COULE 2
+#define EAU 0
+#define RATE 1
+#define TOUCHE 2
+#define COULE 3
 
 
 // Longeur du bateau 
