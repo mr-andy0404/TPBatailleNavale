@@ -21,6 +21,8 @@ public:
 	vector<Bateau> getBateaux();
 	grille getSituation();
 
+	bool recevoirTir(int x, int y);
+
 private: //Méthodes privées
 	lectureFicher(string nomFichier);
 	decouperLigne(string line);

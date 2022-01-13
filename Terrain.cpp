@@ -49,7 +49,7 @@ void Terrain::lectureFicher(string nomFichier) {
             	int maxX = posInit.x + direction*(type-1);
             	int maxY = posInit.y + (1-direction)*(type-1);
 
-            	if(maxX > taille || maxY > taille){
+            	if(maxX > taille || maxY > taille || posInit.x < 0 || posInit.y < 0){
             		cout << lineD[4] << " n'a pas pu etre ajoute car il est en dehors du terrain" << endl;
             	} else {
 
@@ -85,6 +85,21 @@ vector<Bateau> Terrain::getBateaux(){
 	return this->bateaux;
 }
 
-grille Tarrain::getSituation() {
+grille Terrain::getSituation() {
 	return this->situation;
+}
+
+bool recevoirTir(int x, int y) {
+    
+    bool touche = false;
+    int i = 0;
+
+    while (i< this->bateaux.size() && !touche) {
+        touche = this->bateaux[i].recevoirTir(x, y);
+        i++;
+    }
+
+    return touche;
+
+
 }
