@@ -1,4 +1,4 @@
-#include "Ordinateur.h"
+#include "../include/Ordinateur.h"
 
 int alea(int min, int max) {
 	// Fonction qui renvoie un entier aléatoire entre min et max
