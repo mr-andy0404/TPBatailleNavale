@@ -5,9 +5,7 @@
 
 #define taille 10
 
-#define RATE 0
-#define TOUCHE 1
-#define COULE 2
+enum class Case { MUR, EAU, RATE, TOUCHE, COULE };
 
 #define PORTE_AVION 0
 #define CROISEUR 1
