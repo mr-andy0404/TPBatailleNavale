@@ -5,7 +5,6 @@ Terrain::Terrain(){
 }
 
 Terrain::Terrain(string path){
-
 }
 
 void Terrain::lectureFicher(string nomFichier) {

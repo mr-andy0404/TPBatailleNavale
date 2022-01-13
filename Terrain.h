@@ -24,8 +24,8 @@ public:
 	bool recevoirTir(int x, int y);
 
 private: //Méthodes privées
-	lectureFicher(string nomFichier);
-	decouperLigne(string line);
+	void lectureFicher(string nomFichier);
+	vector<string> decouperLigne(string line);
 };
 
 #endif
