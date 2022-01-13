@@ -5,7 +5,6 @@ Terrain::Terrain(){
 }
 
 Terrain::Terrain(string path){
-
 }
 
 void Terrain::lectureFicher(string nomFichier) {
@@ -89,13 +88,13 @@ grille Terrain::getSituation() {
 	return this->situation;
 }
 
-bool recevoirTir(int x, int y) {
+bool Terrain::recevoirTir(int x, int y) {
     
     bool touche = false;
     int i = 0;
 
     while (i< this->bateaux.size() && !touche) {
-        touche = this->bateaux[i].recevoirTir(x, y);
+        touche = this->bateaux[i].estTouche(x, y);
         i++;
     }
 
