@@ -22,7 +22,7 @@ public:
 
   Pos getPos(int numero);
 
-  bool estTouche(int x, int y, Terrain * terrain);
+  bool estTouche(int x, int y);
   bool estCoule();
 
 };

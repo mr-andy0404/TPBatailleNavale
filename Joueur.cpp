@@ -13,9 +13,21 @@ void Joueur::tir(int x, int y, Joueur adversaire) {
 }
 
 void Joueur::recevoirTir(int x, int y) {
+    if(terrain.recevoirTir(x,y)){
+        cout << "Recois Tir!" << endl;
+    }
+    else {
+        cout << "Miss!" << endl;
+    }
     
 }
 
 bool Joueur::aPerdu() {
-
+    vector<Bateau> myBateaux;
+    myBateaux = terrain.getBateaux();
+    for (int i = 0; i < myBateaux.size(); i++) {
+        if(!myBateaux[i].estCoule())
+            return false;
+    }
+    return true;
 }
