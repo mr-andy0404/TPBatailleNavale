@@ -1,4 +1,4 @@
-#include "Joueur.h"
+#include "../include/Joueur.h"
 
 Terrain Joueur::getTerrain() {
     return terrain;

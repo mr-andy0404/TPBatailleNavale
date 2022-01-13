@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 using namespace std;
 
 #include "Variables.h"
@@ -18,8 +19,12 @@ public:
   Bateau() {};
   Bateau(string _nom, int _type, Pos _positionInit, bool direction);
 
-  bool Est_touche(int x, int y, Board* Terrain);
+  Pos getPos(int numero);
+  int getType();
 
-}
+  bool estTouche(int x, int y);
+  bool estCoule();
+
+};
 
 #endif

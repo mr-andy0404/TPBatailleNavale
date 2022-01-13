@@ -8,10 +8,11 @@
 
 #include "Variables.h"
 #include "Bateau.h"
+#include "GL/gl.h"
 
 class Terrain {
 private: //Attributs privés
-	grille situation;
+	grille * situation;
 	vector<Bateau> bateaux;
 
 public:
@@ -19,14 +20,14 @@ public:
 	Terrain(string path);
 
 	vector<Bateau> getBateaux();
-	grille getSituation();
+	grille* getSituation();
 
 	bool recevoirTir(int x, int y);
 	void afficherTerrain();
 
 private: //Méthodes privées
-	lectureFicher(string nomFichier);
-	decouperLigne(string line);
+	void lectureFicher(string nomFichier);
+	vector<string> decouperLigne(string line);
 };
 
 #endif

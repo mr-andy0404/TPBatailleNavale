@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "../include/lib.h"
 
 int add(int const p_a, int const p_b)
 {
