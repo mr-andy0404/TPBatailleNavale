@@ -10,7 +10,6 @@ Terrain::Terrain(string path){
 void Terrain::lectureFicher(string nomFichier) {
     fstream fichier, out;
     fichier.open(nomFichier, ios::in);
-    Vector3D temp3D;
     if (fichier.is_open()) {
         string line;
         while (getline(fichier, line))
@@ -19,13 +18,13 @@ void Terrain::lectureFicher(string nomFichier) {
 
             int type = 0;
             if (lineD[0] == "PORTE_AVION"){
-            	type = PORTE_AVION;
+                type = PORTE_AVION;
             } else if (lineD[0] == "CROISEUR") {
             	type = CROISEUR;
             } else if (lineD[0] == "CONTRE_TORPILLEUR") {
             	type = CONTRE_TORPILLEUR;
             } else if (lineD[0] == "SOUS_MARIN") {
-            	type = SOUS_MARIN
+                type = SOUS_MARIN;
             } else if (lineD[0] == "TORPILLEUR") {
             	type = TORPILLEUR;
             }
@@ -52,7 +51,7 @@ void Terrain::lectureFicher(string nomFichier) {
             		cout << lineD[4] << " n'a pas pu etre ajoute car il est en dehors du terrain" << endl;
             	} else {
 
-            		this->bateaux.push_back(new Bateau(lineD[4], type, posInit, direction));
+            		this->bateaux.push_back(Bateau(lineD[4], type, posInit, direction));
             	}
             }
 
@@ -84,8 +83,8 @@ vector<Bateau> Terrain::getBateaux(){
 	return this->bateaux;
 }
 
-grille Terrain::getSituation() {
-	return this->situation;
+grille* Terrain::getSituation() {
+	return situation;
 }
 
 bool Terrain::recevoirTir(int x, int y) {

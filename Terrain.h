@@ -11,7 +11,7 @@
 
 class Terrain {
 private: //Attributs privés
-	grille situation;
+	grille * situation;
 	vector<Bateau> bateaux;
 
 public:
@@ -19,7 +19,7 @@ public:
 	Terrain(string path);
 
 	vector<Bateau> getBateaux();
-	grille getSituation();
+	grille* getSituation();
 
 	bool recevoirTir(int x, int y);
 
