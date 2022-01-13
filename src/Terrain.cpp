@@ -100,6 +100,40 @@ bool recevoirTir(int x, int y) {
     }
 
     return touche;
+}
 
-
+void afficherTerrain() {
+    int colR;
+    int colG;
+    int colB;
+    for(int i = 0; i < 10; i++){
+        for(int j = 0; j < 10; j++){
+            switch (situation[i][j]) {
+                case 0:
+                colR = 0;
+                colG = 0;
+                colB = 1;
+                break;
+                case 1:
+                colR = 0;
+                colG = 0;
+                colB = 1;
+                break;
+                case 2:
+                break;
+                case 3:
+                break;
+            }
+            glBegin(GL_QUADS);
+            glColor3f(col, col, col);
+            glVertex3f(i, 0, j);
+            glColor3f(col, col, col);
+            glVertex3f(i + 1, 0, j);
+            glColor3f(col, col, col);
+            glVertex3f(i + 1, 0, j + 1);
+            glColor3f(col, col, col);
+            glVertex3f(i, 0, j + 1);
+            glEnd();
+        }
+    }
 }
