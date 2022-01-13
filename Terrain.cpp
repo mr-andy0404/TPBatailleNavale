@@ -8,8 +8,7 @@ Terrain::Terrain(string path){
 
 }
 
-/*
-void lectureFicher(string nomFichier, vector<Vector3D>& vertices, vector<Vector3D>& uvs, vector<Vector3D>& normals, faces& fac) {
+void Terrain::lectureFicher(string nomFichier) {
     fstream fichier, out;
     fichier.open(nomFichier, ios::in);
     Vector3D temp3D;
@@ -18,15 +17,44 @@ void lectureFicher(string nomFichier, vector<Vector3D>& vertices, vector<Vector3
         while (getline(fichier, line))
         {
             vector<string> lineD = decouperLigne(line);
-            if (lineD[0] == "PORTE_AVION") {
+
+            int type = 0;
+            if (lineD[0] == "PORTE_AVION"){
+            	type = PORTE_AVION;
+            } else if (lineD[0] == "CROISEUR") {
+            	type = CROISEUR;
+            } else if (lineD[0] == "CONTRE_TORPILLEUR") {
+            	type = CONTRE_TORPILLEUR;
+            } else if (lineD[0] == "SOUS_MARIN") {
+            	type = SOUS_MARIN
+            } else if (lineD[0] == "TORPILLEUR") {
+            	type = TORPILLEUR;
+            }
+
+
+            if (type > 0) {
             	Pos posInit;
+            	bool direction;
+
             	posInit.x = stoi(lineD[1]);
             	posInit.y = stoi(lineD[2]);
-            	
-            	for (int i=0; i<PORTE_AVION; )
 
-            } else if (lineD[0] == "CROISEUR") {
+            	if (lineD[3] == "Vertical") {
+            		direction = VERTICAL;
+            	}
+            	else if (lineD[3] == "Horizontal") {
+            		direction = HORIZONTAL;
+            	}
 
+            	int maxX = posInit.x + direction*(type-1);
+            	int maxY = posInit.y + (1-direction)*(type-1);
+
+            	if(maxX > taille || maxY > taille || posInit.x < 0 || posInit.y < 0){
+            		cout << lineD[4] << " n'a pas pu etre ajoute car il est en dehors du terrain" << endl;
+            	} else {
+
+            		this->bateaux.push_back(new Bateau(lineD[4], type, posInit, direction));
+            	}
             }
 
         }
@@ -35,7 +63,7 @@ void lectureFicher(string nomFichier, vector<Vector3D>& vertices, vector<Vector3
     fichier.close();
 }
 
-vector<string> decouperLigne(string line) {
+vector<string> Terrain::decouperLigne(string line) {
     vector<string> res;
 
     string temp;
@@ -52,4 +80,26 @@ vector<string> decouperLigne(string line) {
     res.push_back(temp);
     return res;
 }
-*/
+
+vector<Bateau> Terrain::getBateaux(){
+	return this->bateaux;
+}
+
+grille Terrain::getSituation() {
+	return this->situation;
+}
+
+bool recevoirTir(int x, int y) {
+    
+    bool touche = false;
+    int i = 0;
+
+    while (i< this->bateaux.size() && !touche) {
+        touche = this->bateaux[i].recevoirTir(x, y);
+        i++;
+    }
+
+    return touche;
+
+
+}

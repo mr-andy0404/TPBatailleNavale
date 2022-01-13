@@ -1,5 +1,5 @@
-Auteur Erwan
-Ma terrain initial préféré:
-PORTE_AVION 1 12, H
-CROISEUR 3 4, D
-CONTRE_TORPILLEUR 4 4, B
+Auteur: Erwan et Morgan
+Notre config initiale préférée
+PORTE_AVION 1 12, Vertical PorteAvionDeLaMort
+CROISEUR 3 4, H CroiseurDeLaMort
+CONTRE_TORPILLEUR 4 4, V ContreTorpilleurDeLAMort
