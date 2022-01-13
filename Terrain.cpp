@@ -1,10 +1,21 @@
 #include "Terrain.h"
 
 Terrain::Terrain(){
-
+    for (int i = 0; i < taille; i++) {
+        for (int j = 0; j < taille; j++) {
+            (*situation)[i][j] = EAU;
+        }
+    }
 }
 
 Terrain::Terrain(string path){
+
+    lectureFicher(path);
+    for (int i = 0; i < taille; i++) {
+        for (int j = 0; j < taille; j++) {
+            (*situation)[i][j] = EAU;
+        }
+    }
 }
 
 void Terrain::lectureFicher(string nomFichier) {
@@ -90,11 +101,30 @@ grille* Terrain::getSituation() {
 bool Terrain::recevoirTir(int x, int y) {
     
     bool touche = false;
+    bool coule = false;
+
     int i = 0;
 
     while (i< this->bateaux.size() && !touche) {
         touche = this->bateaux[i].estTouche(x, y);
-        i++;
+        if (!touche) {
+            i++;
+        }
+    }
+
+    coule = bateaux[i].estCoule();
+
+    if (touche && coule) {
+        for (int j = 0; j < bateaux[i].getType(); j++) {
+            Pos elementBateau = bateaux[i].getPos(j);
+            (*situation)[elementBateau.x][elementBateau.y] = COULE;
+        }
+    }
+    else if (touche && !coule) {
+        (*situation)[x][y] = TOUCHE;
+    }
+    else {
+        (*situation)[x][y] = RATE;
     }
 
     return touche;
